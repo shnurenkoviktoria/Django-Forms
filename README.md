@@ -3,35 +3,55 @@
 This is a Django-based system for managing teachers and groups.
 
 ## Endpoints
+### /teacher/
+- **HTTP method:** POST
+- **URL:** /teacher/
+- **Description:** Accepts a POST request, validates it, and saves it to the teachers table if the request is valid. Utilizes Django Forms. After saving, it redirects to /teachers/.
 
-### POST /teacher/
-This endpoint accepts a POST request, validates it, and saves the teacher's information into the database if the request is valid. It utilizes Django Forms. After saving, it redirects to `/teachers/`.
+### /teacher/
+- **HTTP method:** GET
+- **URL:** /teacher/
+- **Description:** Accepts a GET request and displays a form for saving a new teacher. Utilizes Django Forms.
 
-### GET /teacher/
-This endpoint accepts a GET request and displays a form for saving a new teacher. It utilizes Django Forms.
+### /teachers/
+- **HTTP method:** GET
+- **URL:** /teachers/
+- **Description:** Accepts a GET request and displays a list of teachers in the database.
 
-### GET /teachers/
-This endpoint accepts a GET request and displays a list of teachers stored in the database.
+### /group/
+- **HTTP method:** POST
+- **URL:** /group/
+- **Description:** Accepts a POST request, validates it, and saves it to the groups table if the request is valid. Utilizes Django Forms. After saving, it redirects to /groups/.
 
-### POST /group/
-This endpoint accepts a POST request, validates it, and saves the group information into the database if the request is valid. It utilizes Django Forms. After saving, it redirects to `/groups/`.
+### /group/
+- **HTTP method:** GET
+- **URL:** /group/
+- **Description:** Accepts a GET request and displays a form for saving a new group. Utilizes Django Forms.
 
-### GET /group/
-This endpoint accepts a GET request and displays a form for saving a new group. It utilizes Django Forms.
-
-### GET /groups/
-This endpoint accepts a GET request and displays a list of groups stored in the database.
+### /groups/
+- **HTTP method:** GET
+- **URL:** /groups/
+- **Description:** Accepts a GET request and displays a list of groups in the database.
 
 ## Models
 
 ### Teacher
-- Full Name (Name, Surname)
-- Date of Birth
-- Subjects (Optional)
+- **Fields:** Full name (PIB), date of birth, subjects (optional).
 
 ### Group
-- Name
+- **Fields:** Name.
 
+### Student
+- **Fields:** Full name (PIB), date of birth, phone.
+
+## Validation
+
+- Added validation for phone number when saving a student. Invalid phone numbers are not allowed to be saved.
+
+## Middleware
+
+- Created LogMiddleware that saves request.path, request.method, and execution_time to a text file. Additional storage in the database can be implemented.
+  
 ## Usage
 
 1. Clone the repository:
